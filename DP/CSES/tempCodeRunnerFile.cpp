@@ -1,0 +1,1 @@
+(cost >= prices[i]) ? f(i + 1, cost - prices[i]) : 0
