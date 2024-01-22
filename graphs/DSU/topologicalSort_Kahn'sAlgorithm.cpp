@@ -10,7 +10,7 @@ using namespace std;
         return;
 
     }
-
+// Using BFS:
     void topologicalSortBFS(){
         // Kahn's Algorithm
 
@@ -33,20 +33,48 @@ using namespace std;
         }
 
         while (!q.empty()) {
-        int node = q.front();
-        cout << node << " ";
-        q.pop();
-        for (auto neighbour : graph[node]) {
-            if (!visited.count(neighbour)) {
-                indegree[neighbour]--;
-                if (indegree[neighbour] == 0) {
-                    q.push(neighbour);
-                    visited.insert(neighbour);
+            int node = q.front();
+            cout << node << " ";
+            q.pop();
+            for (auto neighbour : graph[node]) {
+                if (!visited.count(neighbour)) {
+                    indegree[neighbour]--;
+                    if (indegree[neighbour] == 0) {
+                        q.push(neighbour);
+                        visited.insert(neighbour);
+                    }
                 }
             }
         }
     }
 
+    // Using DFS
+    void topoFind(int i, vector<int> &visited, stack<int> &st){
+        visited[i]=1;
+        for(auto neighbour: graph[i]){
+            if(!visited[neighbour]) topoFind(neighbour,visited, st);
+        }
+
+        st.push(i);
+
+
+    }
+
+    void topologicalSortDFS(){
+        stack<int> st;
+        vector<int> visited(v,0);
+
+        for(int i=0; i<v; i++){
+            if(visited[i]!=1){
+                topoFind(i, visited, st);
+            }
+
+        }
+        while(!st.empty()){
+            cout<<st.top()<<" ";
+            st.pop();
+        }
+        cout<<endl;
 
     }
 
@@ -63,7 +91,7 @@ int main(){
         add_edge(x,y,false);
 
     }
-    topologicalSortBFS();
+    topologicalSortDFS();
 
 
 
