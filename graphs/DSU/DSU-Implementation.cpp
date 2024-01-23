@@ -2,12 +2,14 @@
 using namespace std;
 
 class Disjoint{
+    // Disjoint Set Union
 
     vector<int> parent;
     vector<int> rank;
     int n;
 
 public:
+
     Disjoint(int n){
         parent.resize(n);
         rank.resize(n,0);

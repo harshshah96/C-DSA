@@ -1,5 +1,9 @@
 #include<bits/stdc++.h>
 using namespace std;
+  static int io_opt = []() {
+  ios::sync_with_stdio(false);
+  return 0;
+}();
 
     int find(int a,vector<int> &parent){
         if(parent[a]==a) return a;
@@ -38,6 +42,7 @@ using namespace std;
 
 int main()
 {
+  
     int n;
     cin>>n;
     int queries;
